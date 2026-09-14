@@ -20,7 +20,7 @@ int main() {
         a[i] = i;
     }
     long long *result = malloc(sizeof(long long));
-    double *time = malloc(sizeof(time));
+    double *time = malloc(sizeof(*time));
     sum(a, ARR_LEN, result, time);
-    printf("The result is %lld with a time of %.3f", *result, *time);
+    printf("The result is %lld with a time of %.6f\n", *result, *time);
 }

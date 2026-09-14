@@ -44,22 +44,32 @@ int count_neighbors(int x, int y) {
 // Update grid to next generation
 // TODO: Students parallelize this function with OpenMP
 void update() {
-#pragma omp parallel for collapse(2)
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            int alive_n = count_neighbors(i, j);
-            if (grid[i][j]) {
-                if (alive_n == 3 || alive_n == 4) {
-                    newgrid[i][j] = 1;
+#pragma omp parallel
+    {
+#pragma omp for collapse(2)
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                int alive_n = count_neighbors(i, j);
+                if (grid[i][j]) {
+                    if (alive_n == 3 || alive_n == 4) {
+                        newgrid[i][j] = 1;
+                    } else {
+                        newgrid[i][j] = 0;
+                    }
                 } else {
-                    newgrid[i][j] = 0;
+                    if (alive_n == 2) {
+                        newgrid[i][j] = 1;
+                    } else {
+                        newgrid[i][j] = 0;
+                    }
                 }
-            } else {
-                if (alive_n == 2) {
-                    newgrid[i][j] = 1;
-                } else {
-                    newgrid[i][j] = 0;
-                }
+            }
+        }
+
+#pragma omp for collapse(2)
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                grid[i][j] = newgrid[i][j];
             }
         }
     }
