@@ -5,11 +5,12 @@
 
 void sum(int *in, int length, long long *out, double *time) {
     double start_time = omp_get_wtime();
-#pragma omp parallel for
+    long long sum = 0;
+#pragma omp parallel for default(none) shared(length, in) reduction(+ : sum)
     for (int i = 0; i < length; i++) {
-        *out += in[i];
+        sum += in[i];
     }
-
+    *out = sum;
     *time = omp_get_wtime() - start_time;
 }
 
