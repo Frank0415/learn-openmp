@@ -1,0 +1,23 @@
+#!/bin/bash
+#PBS -N lab2_sum
+#PBS -q normal
+#PBS -l select=1:ncpus=64:mpiprocs=1:ompthreads=64:mem=4gb
+#PBS -l walltime=00:05:00
+#PBS -j oe
+
+set -e
+cd "$PBS_O_WORKDIR"
+
+gcc -O3 -fopenmp sum.c -o sum
+
+export OMP_DYNAMIC=FALSE
+export OMP_PLACES=cores
+export OMP_PROC_BIND=close
+
+for threads in 1 8 16 32 64
+do
+    export OMP_NUM_THREADS="$threads"
+    printf '\n=== threads=%s ===\n' "$threads"
+    ./sum
+    printf '\n'
+done
