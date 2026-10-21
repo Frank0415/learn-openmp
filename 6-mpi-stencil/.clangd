@@ -1,0 +1,8 @@
+CompileFlags:
+  Compiler: /usr/bin/clang
+  Add:
+    - -std=gnu11
+    - -O0
+    - -Wall
+    - -Wextra
+    - -I/opt/homebrew/opt/open-mpi/include
