@@ -1,0 +1,20 @@
+#!/bin/bash
+#PBS -N lab3_graph_verify
+#PBS -q normal
+#PBS -l select=1:ncpus=64:mpiprocs=1:ompthreads=64:mem=4gb
+#PBS -l walltime=02:00:00
+#PBS -j oe
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+printf 'Job: %s\nHost: %s\n' "$PBS_JOBID" "$(hostname)"
+date -Is
+gcc --version | head -1
+mkdir -p build
+gcc -O3 -std=c11 -Wall -Wextra -Wpedantic -fopenmp floyd_warshall_template.c -o build/floyd
+gcc -O3 -std=c11 -Wall -Wextra -Wpedantic -fopenmp triangle_template.c -o build/triangle
+export OMP_DYNAMIC=FALSE
+export OMP_PLACES=cores
+export OMP_PROC_BIND=close
+python3 verify_runs.py --output "results-$PBS_JOBID" --threads 16 32 64
+date -Is

@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-05",
+  "system": "ASPIRE2A",
+  "job_id": "25686994.pbs101",
+  "project": "personal-n2602684",
+  "remote_directory": "/home/users/ntu/n2602688/lab3-20261005",
+  "submission_method": "web portal upload and browser xterm qsub",
+  "resources": {
+    "nodes": 1,
+    "cpus": 16,
+    "memory_gb": 4,
+    "walltime": "02:00:00"
+  },
+  "threads": [
+    16
+  ],
+  "planned_runs": 7,
+  "local_small_graph_checks": {
+    "runs": 4,
+    "failures": 0,
+    "threads": [
+      1,
+      4
+    ],
+    "references": [
+      "Bellman-Ford",
+      "length-three closed walks / 6"
+    ]
+  },
+  "last_observed_state": "Q",
+  "queue": "qdev",
+  "remote_results_directory": "results-25686994.pbs101",
+  "remote_batch_output": "lab3_graph_16.o25686994",
+  "previous_jobs": [
+    {
+      "job_id": "25686670.pbs101",
+      "cpus": 64,
+      "status": "cancelled by user request; qdel succeeded and PBS reports F"
+    }
+  ],
+  "script": "lab3_16.pbs"
+}
