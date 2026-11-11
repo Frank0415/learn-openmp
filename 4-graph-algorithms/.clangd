@@ -1,0 +1,12 @@
+CompileFlags:
+  Compiler: /usr/bin/clang
+  Add:
+    - -std=c11
+    - -Wall
+    - -Wextra
+    - -I/opt/homebrew/opt/libomp/include
+    - -Xpreprocessor
+    - -fopenmp
+Diagnostics:
+  Suppress:
+    - unused-includes
