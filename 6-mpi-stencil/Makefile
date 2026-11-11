@@ -1,15 +1,21 @@
 MPICC ?= mpicc
 MPIEXEC ?= mpirun
 MPIEXEC_FLAGS ?=
+ifeq ($(shell uname -s),Darwin)
+export OMPI_CC ?= /usr/bin/clang
+endif
 RANKS ?= 4
 N ?= 32
 MAX_ITERS ?= 5000
 EPSILON ?= 1e-4
 
-.PHONY: all stencil blocking run run-blocking clean
+.PHONY: all stencil blocking check run run-blocking clean
 all: build/stencil
 stencil: build/stencil
 blocking: build/stencil_blocking
+
+check: | build
+	$(MPICC) -std=gnu11 -Wall -Wextra -Wpedantic -O0 -c stencil_skeleton.c -o build/stencil.check.o
 
 build:
 	mkdir -p $@
@@ -29,4 +35,4 @@ run-blocking: build/stencil_blocking
 	$(MPIEXEC) $(MPIEXEC_FLAGS) -np $(RANKS) ./build/stencil_blocking $(N) $(MAX_ITERS) $(EPSILON)
 
 clean:
-	$(RM) build/stencil build/stencil_blocking
+	$(RM) build/stencil build/stencil_blocking build/stencil.check.o
