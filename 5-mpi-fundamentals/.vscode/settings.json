@@ -1,0 +1,9 @@
+{
+  "clangd.onConfigChanged": "restart",
+  "C_Cpp.intelliSenseEngine": "Disabled",
+  "[c]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  }
+}
