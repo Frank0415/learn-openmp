@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Lab 5: Build stencil",
+      "type": "process",
+      "command": "/usr/bin/make",
+      "args": ["-B", "all"],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {"PATH": "/opt/homebrew/bin:${env:PATH}"}
+      },
+      "group": {"kind": "build", "isDefault": true},
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Lab 5: Check C syntax",
+      "type": "process",
+      "command": "/usr/bin/make",
+      "args": ["check"],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {"PATH": "/opt/homebrew/bin:${env:PATH}"}
+      },
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}
