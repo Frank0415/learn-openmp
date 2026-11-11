@@ -1,0 +1,11 @@
+CompileFlags:
+  Add:
+    - -std=c11
+    - -Wall
+    - -I/opt/homebrew/opt/libomp/include
+    - -Xpreprocessor
+    - -fopenmp
+    - -D_OPENMP
+Diagnostics:
+  Suppress:
+    - unused-includes

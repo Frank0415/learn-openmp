@@ -1,0 +1,6 @@
+parallel
+parallel_no_false
+serial
+.DS_Store
+.vscode
+.vscode/*
