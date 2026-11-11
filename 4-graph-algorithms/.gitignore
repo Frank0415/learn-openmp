@@ -1,0 +1,6 @@
+# Supplied large input datasets; keep the two tiny verification cases in Git.
+data/graph500.txt
+data/graph5000.txt
+data/graph500_tri.txt
+data/graph5000_tri.txt
+data/graph10000_tri.txt

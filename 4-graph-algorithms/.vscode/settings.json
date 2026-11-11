@@ -1,0 +1,13 @@
+{
+  "clangd.onConfigChanged": "restart",
+  "C_Cpp.intelliSenseEngine": "Disabled",
+  "[c]": {
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  },
+  "clang-format.executable": "/opt/homebrew/bin/clang-format",
+  "clang-format.style": "file",
+  "clang-format.fallbackStyle": "LLVM"
+}
